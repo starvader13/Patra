@@ -4,7 +4,8 @@
   "description": "Backend Route For Patra: Digital-Card Generator ",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -b",
+    "dev": "npx nodemon src/index.ts"
   },
   "repository": {
     "type": "git",
