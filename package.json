@@ -1,0 +1,14 @@
+{
+  "name": "patra",
+  "version": "1.0.0",
+  "description": "A Digital Information Card Generator Website",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Starvader",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^2.0.6"
+  },
+  "packageManager": "npm@10.5.2"
+}
