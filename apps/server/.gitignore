@@ -1,0 +1,8 @@
+# Node Modules
+node_modules
+
+# Enviroment Variable
+.env 
+
+# Build
+build
