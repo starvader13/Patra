@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc -b",
     "dev": "npx nodemon src/index.ts",
+    "test": "jest",
     "prisma-generate": "prisma generate --schema=./prisma/schema.prisma",
     "prisma-migrate": "prisma migrate dev --schema=./prisma/schema.prisma --name",
     "prisma-reset": "prisma migrate reset"
@@ -22,7 +23,9 @@
   "homepage": "https://github.com/starvader13/Patra#readme",
   "devDependencies": {
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.14.9",
+    "jest": "^29.7.0",
     "prisma": "^5.16.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.2"
