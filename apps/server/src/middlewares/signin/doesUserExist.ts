@@ -19,7 +19,7 @@ const doesUserExist = async (req: Request, res: Response, next: NextFunction): P
         }
 
         req.body.userPassword = user.password;
-        req.body.email = user.email;
+        req.body.username = user.username;
         return next();
     }
     catch(e){
