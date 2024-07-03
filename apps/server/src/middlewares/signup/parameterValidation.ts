@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import StatusCodes from "src/config/statusCode";
+import StatusCodes from "../../config/StatusCode";
 
 const parameterValidation = (req: Request, res: Response, next: NextFunction): (Response | void)=>{
     const body = req.body;
@@ -9,7 +9,7 @@ const parameterValidation = (req: Request, res: Response, next: NextFunction): (
     }
 
     return res.status(StatusCodes.BAD_REQUEST).json({
-        message: "Data recieved is not in the correct fromat"
+        message: "Data recieved is not in the correct format"
     });
 }
 

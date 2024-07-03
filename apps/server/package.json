@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "build": "tsc -b",
-    "dev": "npx nodemon src/index.ts",
+    "dev": "npx nodemon dist/index.js",
     "test": "jest",
     "prisma-generate": "prisma generate --schema=./prisma/schema.prisma",
     "prisma-migrate": "prisma migrate dev --schema=./prisma/schema.prisma --name",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/starvader13/Patra#readme",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.9",
@@ -32,8 +33,10 @@
   },
   "dependencies": {
     "@prisma/client": "^5.16.1",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "zod": "^3.23.8"
   }
 }

@@ -16,6 +16,8 @@ enum StatusCodes {
     PAYLOAD_TOO_LARGE = 413,
     URI_TOO_LONG = 414,
     TOO_MANY_REQUESTS = 429,
+
+    INTERNAL_SERVER_ERROR = 500.
 }
 
 export default StatusCodes;
