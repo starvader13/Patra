@@ -1,6 +1,16 @@
 import express from 'express';
+import dotenv from 'dotenv';
+import mainRouter from './routes/mainRoute';
+import bodyParser from 'body-parser';
+
+dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(PORT);
+app.use(bodyParser.json())
+app.use("/api/v1", mainRouter);
+
+app.listen(PORT, ()=>{
+    console.log(`Server is running at PORT ${PORT}`);
+});

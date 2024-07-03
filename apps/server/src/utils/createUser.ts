@@ -3,14 +3,25 @@ import User from "../config/User";
 
 const prisma = new PrismaClient();
 
-const createUser = async(user: User): Promise<string> =>{
+interface createUserResponse {
+    success: boolean,
+    message: string
+}
+
+const createUser = async(user: User): Promise<createUserResponse> =>{
     try{
         const response = await prisma.user.create({
             data: user
         })
-        return "User Created Successfully";
+        return {
+            success: true,
+            message: "User Created Successfully"
+        };
     }catch(e){
-        return "Failed Creating User";
+        return {
+            success: false,
+            message: "Failed Creating User"
+        };
     }
 }
 
