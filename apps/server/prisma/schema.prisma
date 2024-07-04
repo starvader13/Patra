@@ -28,10 +28,13 @@ model Card {
   id Int @default(autoincrement()) @id
   name String
   description String
+  age Int?
+  mailTo String?
   imageUrl String
   linkedin String?
   twitter String?
   customURL String?
+  hobbies String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   author User @relation(fields: [authorId], references: [id])
