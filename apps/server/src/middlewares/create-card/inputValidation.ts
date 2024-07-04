@@ -18,8 +18,6 @@ const createCardInputValidation = async (req: Request, res: Response, next: Next
    const body = req.body;
    const zodResponse = createCardInputSchema.safeParse(body);
 
-   console.log("hello")
-
    if(!zodResponse.success){
     return res.status(StatusCodes.BAD_REQUEST).json({
         message: zodResponse.error.issues[0].message
