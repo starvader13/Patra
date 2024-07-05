@@ -40,8 +40,29 @@ router.post("/create-card", createCardParameterValidation, createCardInputValida
     });
 });
 
-router.param('cardId', doesCardExist);
 router.use(findUserId);
+
+router.get("/cards", async (req: Request, res: Response)=>{
+    const userId = (<RequestWithUser>req).userId;
+
+    const response = await prisma.card.findMany({
+        where: {
+            authorId: userId
+        }
+    });
+
+    if(!response){
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            message: "Internal Server Error"
+        });
+    }
+
+    return res.status(StatusCodes.OK).json({
+        cards: response
+    })
+})
+
+router.param('cardId', doesCardExist);
 
 router.delete("/delete-card/:cardId", deleteCardParameterValidation, async(req: Request, res: Response, next: NextFunction)=>{
     const id: number = parseInt(req.params.cardId);
