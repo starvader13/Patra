@@ -5,7 +5,7 @@ import { RequestWithUser } from "../../types/request";
 
 const prisma = new PrismaClient();
 
-const findUserId = async (req: Request, res: Response, next: NextFunction) => {
+const findUserId = async (req: Request, res: Response, next: NextFunction): Promise<(void | Response)> => {
     const response = await prisma.user.findUnique({
         where: {
             email: (<RequestWithUser>req).userEmail

@@ -4,8 +4,7 @@ import { StatusCodes, CardWithEveryDetail } from "../../config";
 
 const prisma = new PrismaClient();
 
-const doesCardExist = async (req: Request, res: Response, next: NextFunction, cardId: number): Promise<(void | Response<string>)> => {
-    console.log(req.params.cardId);
+const doesCardExist = async (req: Request, res: Response, next: NextFunction, cardId: number): Promise<(void | Response)> => {
     const id: number = parseInt(req.params.cardId);
     
     const response: CardWithEveryDetail = await prisma.card.findUnique({

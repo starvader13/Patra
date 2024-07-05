@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "../../config";
 
-const deleteCardParameterValidation = (req: Request, res: Response, next: NextFunction): (void | Response<string>) => {
+const deleteCardParameterValidation = (req: Request, res: Response, next: NextFunction): (void | Response) => {
     const params = req.params;
 
-    if(Object.keys(params).length==1){
+    if(Object.keys(params).length===1){
        return next(); 
     }
 

@@ -47,22 +47,29 @@ router.delete("/delete-card/:cardId", deleteCardParameterValidation, async(req: 
     const id: number = parseInt(req.params.cardId);
     const userId = (<RequestWithUser>req).userId;
 
-    const response: CardWithEveryDetail = await prisma.card.delete({
-        where: {
-            id: id,
-            authorId: userId
+    try{
+        const response: CardWithEveryDetail = await prisma.card.delete({
+            where: {
+                id: id,
+                authorId: userId
+            }
+        })
+    
+        if(!response){
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: "Internal Server Error"
+            });
         }
-    })
 
-    if(!response){
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            message: "Internal Server Error"
+        return res.status(StatusCodes.OK).json({
+            message: "Card Deleted successfully"
+        });
+    }catch(e){
+        return res.status(StatusCodes.UNAUTHORIZED).json({
+            message: "User is not authorized to delete this card"
         });
     }
 
-    return res.status(StatusCodes.OK).json({
-        message: "Card Deleted successfully"
-    });
 });
 
 router.put("/update-card/:cardId", updateCardParameterValidation, updateCardInputValidation, async (req: Request, res: Response, next: NextFunction)=>{
@@ -70,24 +77,29 @@ router.put("/update-card/:cardId", updateCardParameterValidation, updateCardInpu
     const id: number = parseInt(req.params.cardId);
     const userId = (<RequestWithUser>req).userId;
     
-    const response = await prisma.card.update({
-        where: {
-            id: id,
-            authorId: userId
-        },
-        data: body,
-    })
+    try{
+        const response = await prisma.card.update({
+            where: {
+                id: id,
+                authorId: userId
+            },
+            data: body,
+        })
 
-    if(!response){
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            message: "Internal Server Error"
+        if(!response){
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+                message: "Internal Server Error"
+            });
+        }
+
+        return res.status(StatusCodes.OK).json({
+            message: "Card Updated successfully"
+        });
+    }catch(e){
+        return res.status(StatusCodes.UNAUTHORIZED).json({
+            message: "User is not authorized to update this card"
         });
     }
-
-    return res.status(StatusCodes.OK).json({
-        message: "Card Update successfully"
-    });
-
 })
 
 export default router;

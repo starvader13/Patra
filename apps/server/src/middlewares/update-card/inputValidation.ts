@@ -14,7 +14,7 @@ const updateCardInputSchema = zod.object({
     hobbies: zod.string({message: "Hobbies should be a string"}).optional(),
 }).strict();
 
-const updateCardinputValidation = (req: Request, res: Response, next: NextFunction) => {
+const updateCardinputValidation = (req: Request, res: Response, next: NextFunction): (void | Response) => {
     const body = req.body;
     const zodResponse = updateCardInputSchema.safeParse(body);
 

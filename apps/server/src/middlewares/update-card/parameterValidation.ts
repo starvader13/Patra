@@ -17,8 +17,6 @@ const parameterValidation = (req: Request, res: Response, next: NextFunction): (
     return res.status(StatusCodes.BAD_REQUEST).json({
         message: "Data recieved is not in the correct format"
     });
-
-    return next();
 }
 
 export default parameterValidation;
