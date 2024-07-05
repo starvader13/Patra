@@ -5,7 +5,7 @@ import { RequestWithUser } from "../../types/request";
 
 const prisma = new PrismaClient();
 
-const doesCardLimitExceed = async (req: Request, res: Response, next: NextFunction) => {
+const doesCardLimitExceed = async (req: Request, res: Response, next: NextFunction): Promise<(void | Response)> => {
     const email = (<RequestWithUser>req).userEmail || "";
 
     const userResponse = await prisma.user.findUnique({
@@ -33,6 +33,7 @@ const doesCardLimitExceed = async (req: Request, res: Response, next: NextFuncti
     }
     
     (<RequestWithUser>req).userId = userResponse.id;
+    
     return next();
 }
 

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { StatusCodes } from "../../config";
+import { CardWithEveryDetail, StatusCodes } from "../../config";
 import zod from 'zod';
 
 const createCardInputSchema = zod.object({
@@ -14,17 +14,17 @@ const createCardInputSchema = zod.object({
     hobbies: zod.string({message: "Hobbies should be a string"}).optional(),
 }).strict();
 
-const createCardInputValidation = async (req: Request, res: Response, next: NextFunction) => {
-   const body = req.body;
-   const zodResponse = createCardInputSchema.safeParse(body);
+const createCardInputValidation = (req: Request, res: Response, next: NextFunction): (void | Response) => {
+    const body = req.body;
+    const zodResponse = createCardInputSchema.safeParse(body);
 
-   if(!zodResponse.success){
-    return res.status(StatusCodes.BAD_REQUEST).json({
-        message: zodResponse.error.issues[0].message
-    })
-}
+    if(!zodResponse.success){
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            message: zodResponse.error.issues[0].message
+        })
+    }
 
-return next();
+    return next();
 }
 
 export default createCardInputValidation;

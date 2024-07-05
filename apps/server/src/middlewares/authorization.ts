@@ -7,7 +7,7 @@ dotenv.config();
 
 const SECRET_KEY = process.env.JWT_SECRET || "";
 
-const authorization = async (req: Request, res: Response, next: NextFunction)=>{
+const authorization = (req: Request, res: Response, next: NextFunction): (void | Response)=>{
     const token = req.headers.authorization || "";
 
     if(!token){
@@ -26,6 +26,7 @@ const authorization = async (req: Request, res: Response, next: NextFunction)=>{
         }
 
         (<RequestWithUser>req).userEmail = response.email;
+
         return next();
     }catch(err){
         return res.status(StatusCodes.UNAUTHORIZED).json({
