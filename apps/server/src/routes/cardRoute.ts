@@ -5,6 +5,7 @@ import { createCardParameterValidation, createCardInputValidation, doesCardLimit
 import { PrismaClient } from "@prisma/client";
 import { Card, CardWithEveryDetail, StatusCodes } from "../config";
 import { deleteCardInputValidation, deleteCardParameterValidation, doesCardExist } from "../middlewares/delete-card";
+import { updateCardInputValidation, updateCardParameterValidation, updateCardDoesCardExist, findUserId } from "../middlewares/update-card";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -56,6 +57,31 @@ router.delete("/delete-card", deleteCardParameterValidation, deleteCardInputVali
     return res.status(StatusCodes.OK).json({
         message: "Card Deleted successfully"
     });
+});
+
+router.put("/update-card/:cardId", updateCardParameterValidation, updateCardInputValidation, updateCardDoesCardExist, findUserId, async (req: Request, res: Response, next: NextFunction)=>{
+    const body = req.body;
+    const id: number = parseInt(req.params.cardId);
+    const userId = (<RequestWithUser>req).userId;
+    
+    const response = await prisma.card.update({
+        where: {
+            id: id,
+            authorId: userId
+        },
+        data: body,
+    })
+
+    if(!response){
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            message: "Internal Server Error"
+        });
+    }
+
+    return res.status(StatusCodes.OK).json({
+        message: "Card Update successfully"
+    });
+
 })
 
 export default router;

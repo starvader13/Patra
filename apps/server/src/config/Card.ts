@@ -3,7 +3,7 @@ interface Card {
     description: string,
     age?: number,
     hobbies?: string,
-    mailto?: string,
+    mailTo?: string,
     imageUrl: string,
     linkedin?: string,
     twitter?: string,
