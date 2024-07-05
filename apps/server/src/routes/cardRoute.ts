@@ -13,6 +13,28 @@ const prisma = new PrismaClient();
 
 router.use(authorization);
 
+router.param('cardId', doesCardExist);
+
+router.get("/:cardId", async (req: Request, res: Response) => {
+    const id: number = parseInt(req.params.cardId);
+  
+    const response: CardWithEveryDetail = await prisma.card.findUnique({
+        where: {
+            id: id
+        }
+    });
+
+    if(!response){
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            message: "Internal Server Error"
+        });
+    }
+
+    return res.status(StatusCodes.OK).json({
+        card: response
+    });
+});
+
 router.post("/create-card", createCardParameterValidation, createCardInputValidation, doesCardLimitExceed, async (req: Request, res: Response)=>{
     const body: Card = req.body;
     const id = (<RequestWithUser>req).userId;
@@ -61,8 +83,6 @@ router.get("/cards", async (req: Request, res: Response)=>{
         cards: response
     })
 })
-
-router.param('cardId', doesCardExist);
 
 router.delete("/delete-card/:cardId", deleteCardParameterValidation, async(req: Request, res: Response, next: NextFunction)=>{
     const id: number = parseInt(req.params.cardId);
