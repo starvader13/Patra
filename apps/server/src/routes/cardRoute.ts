@@ -4,8 +4,9 @@ import { RequestWithUser } from "../types/request";
 import { createCardParameterValidation, createCardInputValidation, doesCardLimitExceed } from "../middlewares/create-card/index";
 import { PrismaClient } from "@prisma/client";
 import { Card, CardWithEveryDetail, StatusCodes } from "../config";
-import { deleteCardInputValidation, deleteCardParameterValidation, doesCardExist } from "../middlewares/delete-card";
-import { updateCardInputValidation, updateCardParameterValidation, updateCardDoesCardExist, findUserId } from "../middlewares/update-card";
+import { deleteCardParameterValidation } from "../middlewares/delete-card";
+import { updateCardInputValidation, updateCardParameterValidation } from "../middlewares/update-card";
+import { doesCardExist, findUserId } from "../middlewares/card/index";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -39,12 +40,17 @@ router.post("/create-card", createCardParameterValidation, createCardInputValida
     });
 });
 
-router.delete("/delete-card", deleteCardParameterValidation, deleteCardInputValidation, doesCardExist, async(req: Request, res: Response, next: NextFunction)=>{
-    const id: number = req.body.id;
+router.param('cardId', doesCardExist);
+router.use(findUserId);
+
+router.delete("/delete-card/:cardId", deleteCardParameterValidation, async(req: Request, res: Response, next: NextFunction)=>{
+    const id: number = parseInt(req.params.cardId);
+    const userId = (<RequestWithUser>req).userId;
 
     const response: CardWithEveryDetail = await prisma.card.delete({
         where: {
-            id: id
+            id: id,
+            authorId: userId
         }
     })
 
@@ -59,7 +65,7 @@ router.delete("/delete-card", deleteCardParameterValidation, deleteCardInputVali
     });
 });
 
-router.put("/update-card/:cardId", updateCardParameterValidation, updateCardInputValidation, updateCardDoesCardExist, findUserId, async (req: Request, res: Response, next: NextFunction)=>{
+router.put("/update-card/:cardId", updateCardParameterValidation, updateCardInputValidation, async (req: Request, res: Response, next: NextFunction)=>{
     const body = req.body;
     const id: number = parseInt(req.params.cardId);
     const userId = (<RequestWithUser>req).userId;
