@@ -14,7 +14,7 @@ const logger = async (logData: LogData): Promise<(null | undefined)>  => {
         return null;
     }
 
-    fs.appendFile(logFile, JSON.stringify(logData), (err)=>{
+    fs.appendFile(logFile, JSON.stringify(logData).concat("\n"), (err)=>{
         if(err){
             console.log(err);
             throw err;
