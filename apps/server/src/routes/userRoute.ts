@@ -3,6 +3,7 @@ import { StatusCodes } from "../config/index"
 import { signupParameterValidation, signupInputValidation, doesUserNotExist } from "../middlewares/signup/index";
 import { doesUserExist, signinInputValidation, signinParameterValidation, comparePassword } from "../middlewares/signin/index";
 import { createUser, encryptPassword} from "../utils/index";
+import debounce from "../middlewares/debounce";
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 
@@ -18,6 +19,8 @@ function createToken(email: string, username: string): (null | string){
     }
     return "Bearer " + jwt.sign({email, username}, SECRET_KEY, {expiresIn: '1 day'});
 }
+
+router.use(debounce);
 
 router.post("/signup",signupParameterValidation, signupInputValidation, doesUserNotExist, async (req: Request, res: Response)=>{
     const body = req.body;

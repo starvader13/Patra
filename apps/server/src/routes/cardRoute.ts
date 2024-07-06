@@ -7,11 +7,13 @@ import { Card, CardWithEveryDetail, StatusCodes } from "../config";
 import { deleteCardParameterValidation } from "../middlewares/delete-card";
 import { updateCardInputValidation, updateCardParameterValidation } from "../middlewares/update-card";
 import { doesCardExist, findUserId } from "../middlewares/card/index";
+import debounce from "../middlewares/debounce";
 
 const router = Router();
 const prisma = new PrismaClient();
 
 router.use(authorization);
+router.use(debounce);
 
 router.param('cardId', doesCardExist);
 
