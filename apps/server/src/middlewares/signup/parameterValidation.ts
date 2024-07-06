@@ -13,7 +13,7 @@ const parameterValidation = (req: Request, res: Response, next: NextFunction): (
     const logData: LogData = {
         message: "Signup Parameter Validation Failed",
         origin: "signup-parameterValidation",
-        timestamp: Date.now() 
+        timestamp: Date()
     }
 
     logger(logData);

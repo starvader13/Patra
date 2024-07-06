@@ -1,7 +1,7 @@
 type LogData = {
     message: string,
     origin: string,
-    timestamp: number
+    timestamp: string
 }
 
 export default LogData
