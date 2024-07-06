@@ -6,14 +6,14 @@ import readline from 'readline';
 const rl = readline.createInterface(process.stdin, process.stdout)
 
 class LogDataRenderer {
-    timestamp: string;
-    origin: string;
     message: string;
+    origin: string;
+    timestamp: string;
 
     constructor( timestamp: string, origin: string, message: string){
-        this.timestamp = timestamp;
-        this.origin = origin;
         this.message = message;
+        this.origin = origin;
+        this.timestamp = timestamp;
     };
 }
 

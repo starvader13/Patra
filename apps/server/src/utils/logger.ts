@@ -8,14 +8,23 @@ const logger = async (logData: LogData): Promise<(null | undefined)>  => {
 
     if(logData.origin.includes("authorization")){
         logFile = path.join(logDir, 'authorization.log');
-    }else if(logData.origin.includes("signup")){
+    }
+    else if(logData.origin.includes("signup")){
         logFile = path.join(logDir, "signup.log");
-    }else{
+    }
+    else if(logData.origin.includes("global error-handling middleware")){
+        logFile = path.join(logDir, "global-middleware.log");
+    }
+    else{
         return null;
     }
 
     fs.readFile(logFile, 'utf-8', (err, data)=>{
-        // if(err) throw err;
+        if(err){
+            console.log("Logs For The File Does Not Exist");
+            process.exit(1);
+        }
+
         const writeData = data ? JSON.parse(data) : [];
 
         writeData.push(logData);
