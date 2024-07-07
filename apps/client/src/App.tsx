@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense } from 'react';
 import allRoutes from './utils/allRoutes';
+import SuspenseLoading from './components/App/SuspenseLoading';
 
 function App(): JSX.Element {
 
@@ -10,10 +11,10 @@ function App(): JSX.Element {
 			<Routes>
 				{
 					allRoutes.map(userRoute => {
-						return <Route path={userRoute.path} element={<Suspense fallback={<a><img src="/loading.gif" alt="...Loading" /></a>}> <userRoute.element /> </Suspense>}/>
+						return <Route path={userRoute.path} element={<Suspense fallback={<SuspenseLoading />}> <userRoute.element /> </Suspense>}/>
 					})
 				}
-				<Route path="*" element={<Suspense fallback={"...loading"}> <div>False Route</div> </Suspense>}/>
+				<Route path="*" element={<Suspense fallback={<SuspenseLoading />}> <div>False Route</div> </Suspense>}/>
 			</Routes>
 		</BrowserRouter>
 	</div>
