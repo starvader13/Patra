@@ -6,7 +6,7 @@ import SuspenseLoading from './components/App/SuspenseLoading';
 
 function App(): JSX.Element {
 
-	return <div>
+	return <div className='bg-gray-800 text-white'>
 		<BrowserRouter>
 			<Routes>
 				{
