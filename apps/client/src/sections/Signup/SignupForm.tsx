@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form"
 import { InputField, SignTextArea, SignButton } from "../../components/Sign";
 import { SignUpFormInput } from "../../types";
-import { integrateSignup } from "../../utils";
+import { integrateSignup, handleSignupAndLogin } from "../../utils";
 import FlashMessage from "../../components/FlashMessage";
 import { useRecoilState } from "recoil";
 import flashMessageAtom from "../../store/flashMessageAtom";
 import { useNavigate } from "react-router-dom";
-import handleSignupAndLogin from "../../utils/handleSignupAndLogin";
 
 const SignupForm = () => {
     const { register,handleSubmit, formState: {errors} } = useForm<SignUpFormInput>({
