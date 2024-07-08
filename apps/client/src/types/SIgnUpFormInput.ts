@@ -1,5 +1,5 @@
 type SignUpFormInput = {
-    username: string,
+    username?: string,
     email: string,
     password: string
 }
