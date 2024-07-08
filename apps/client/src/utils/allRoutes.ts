@@ -7,7 +7,7 @@ type AllRoutes = {
 
 const allRoutes: AllRoutes= [
     {
-        path: "home",
+        path: "/",
         element: Home
     },{
         path: "create-card",
