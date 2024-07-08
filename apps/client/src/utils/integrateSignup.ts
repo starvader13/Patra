@@ -1,4 +1,4 @@
-import { SignUpFormInput } from "../types";
+import { IntegrateSignResult, SignUpFormInput } from "../types";
 import zod from 'zod';
 import axios from "axios";
 
@@ -24,16 +24,19 @@ const integrateSignup = async (data: SignUpFormInput) => {
             password: data.password 
         });
         
-        return {
-            message: response.data.message,
+        const signUpResult: IntegrateSignResult= {
+            message: response.data.messignUpRage,
             token: response.data.token
-        };
+        }
+
+        return signUpResult;
         
     }catch(e: any){
-
-        return {
+        const signUpResult: IntegrateSignResult = {
             message: e.response?.data?.message || "Internal Server Error"
         };
+
+        return signUpResult;
     }
 
 }

@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form"
 import { InputField, SignTextArea, SignButton } from "../../components/Sign";
 import { SignUpFormInput } from "../../types";
-import integrateSignup from "../../utils/integrateSignup";
+import { integrateSignup } from "../../utils";
 import FlashMessage from "../../components/FlashMessage";
 import { useRecoilState } from "recoil";
 import flashMessageAtom from "../../store/flashMessageAtom";
 import { useNavigate } from "react-router-dom";
+import handleSignupAndLogin from "../../utils/handleSignupAndLogin";
 
 const SignupForm = () => {
     const { register,handleSubmit, formState: {errors} } = useForm<SignUpFormInput>({
@@ -17,22 +18,9 @@ const SignupForm = () => {
     });
 
     const [flashMessage, setFlashMessage] = useRecoilState(flashMessageAtom);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const signup = async (data: any) => {
-        const response = await integrateSignup(data);
-        setFlashMessage(response.message);
-        console.log(response.message)
-        if(response.token){
-            localStorage.setItem("authorization", response.token);
-            setTimeout(()=>{
-                navigate("/home");
-                setFlashMessage("");
-            }, 1000)
-        }
-    }
-
-    return <form onSubmit={handleSubmit(signup)} className="p-4 flex flex-col gap-3 justify-center items-center">
+    return <form onSubmit={handleSubmit((data)=>handleSignupAndLogin(data, integrateSignup, setFlashMessage, navigate))} className="p-4 flex flex-col gap-3 justify-center items-center">
         {
             flashMessage? <FlashMessage message={flashMessage} /> : <div className="mb-3"></div>
         }
