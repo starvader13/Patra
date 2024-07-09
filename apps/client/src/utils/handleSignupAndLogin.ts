@@ -1,8 +1,8 @@
 import { NavigateFunction } from "react-router-dom";
 import { SetterOrUpdater } from "recoil";
-import { IntegrateSignResult, SignUpFormInput } from "../types";
+import { IntegrateSignResult, SignFormInput } from "../types";
 
-const handleSignupAndLogin = async (data: SignUpFormInput, integrateFunction: (data: SignUpFormInput) => Promise<IntegrateSignResult>, setFlashMessage: SetterOrUpdater<string> , navigate: NavigateFunction) => {
+const handleSignupAndLogin = async (data: SignFormInput, integrateFunction: (data: SignFormInput) => Promise<IntegrateSignResult>, setFlashMessage: SetterOrUpdater<string> , navigate: NavigateFunction) => {
     const response = await integrateFunction(data);
     setFlashMessage(response.message);
     if(response.token){

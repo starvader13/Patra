@@ -1,9 +1,7 @@
-import SignInFormInput from "./SignInFormInput";
-import SignUpFormInput from "./SIgnUpFormInput";
+import SignFormInput from "./SIgnUpFormInput";
 import IntegrateSignResult from "./IntegrateSignResult";
 
 export type {
-    SignInFormInput,
-    SignUpFormInput,
+    SignFormInput,
     IntegrateSignResult
 }
