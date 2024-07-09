@@ -1,16 +1,15 @@
-import { UseFormRegister, Path } from "react-hook-form";
-import { SignInFormInput, SignUpFormInput } from "../../types";
+import { UseFormRegister, Path, FieldValues } from "react-hook-form";
 
-type InputField = {
-    type: string, 
+type InputField<T extends FieldValues > = {
+    type: string,
     placeholder: string, 
     header: string, 
-    register: UseFormRegister<SignInFormInput & SignUpFormInput>, 
-    registerData: Path<SignUpFormInput & SignInFormInput>,
+    register: UseFormRegister<T>, 
+    registerData: Path<T>,
     errors: string | undefined
 }
 
-const InputField = ({type, placeholder, header, register, registerData, errors}: InputField): JSX.Element => {
+const InputField = <T extends FieldValues,>({type, placeholder, header, register, registerData, errors}: InputField<T>): JSX.Element => {
     errors = errors ? errors[0].toUpperCase() + errors.slice(1, errors.length) : undefined;
 
     return <div className="text-xl flex flex-col justify-start items-start pt-4 py-4 w-[70%] gap-1">
