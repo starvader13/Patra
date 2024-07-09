@@ -1,4 +1,4 @@
-import { SignInFormInput, IntegrateSignResult } from "../types";
+import { SignFormInput, IntegrateSignResult } from "../types";
 import zod from 'zod';
 import axios from 'axios'
 
@@ -7,7 +7,7 @@ const loginInputSchema = zod.object({
     password: zod.string({message: "Password is required and should be a valid string"}).min(4, {message: "Password should be minimum of 4 characters"}).max(12, {message: "Password should be maximum of 25 characters"}),
 }).strict();
 
-const integrateLogin = async (data: SignInFormInput) => {
+const integrateLogin = async (data: SignFormInput) => {
     const zodResponse = loginInputSchema.safeParse(data);
 
     if(!zodResponse.success){
