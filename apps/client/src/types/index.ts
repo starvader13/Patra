@@ -5,5 +5,5 @@ import IntegrateSignResult from "./IntegrateSignResult";
 export type {
     SignInFormInput,
     SignUpFormInput,
-    IntegrateSignResult
+    IntegrateSignResult,
 }
