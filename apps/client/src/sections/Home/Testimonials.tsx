@@ -8,7 +8,7 @@ const Testimonials = () => {
 			<StarRating count={5}/>
 			<div className="text-5xl font-serif">Don't take our word for it. Take theirs</div>
 		</div>
-		<div className="w-full grid grid-cols-4 gap-4">
+		<div className="w-full grid grid-cols-1 md:grid-cols-4 gap-4">
 			{
 				testimonialData.map((data: TestimonialData)=>{
 					return <TestimonialFormat name={data.name} feedback={data.feedback} profession={data.profession}/>

@@ -12,6 +12,7 @@ export default {
       animation: {
         bounceOnce: "bounce 2s linear 2",
         pulseOnce: "pulse 2s linear 2",
+        pingOnce: "ping 2s linear 2",
       }
     },
   },
