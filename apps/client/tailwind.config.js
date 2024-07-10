@@ -5,7 +5,15 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "lato": ['lato', 'sans-serif']
+      },
+      animation: {
+        bounceOnce: "bounce 2s linear 2",
+        pulseOnce: "pulse 2s linear 2",
+      }
+    },
   },
   plugins: [],
 }

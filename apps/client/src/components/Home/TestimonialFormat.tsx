@@ -2,7 +2,7 @@ import { TestimonialData } from "../../types";
 
 const TestimonialFormat = ({ name, feedback, profession }: TestimonialData) => {
     return (
-        <div className={"flex flex-col justify-center border-2 rounded-xl bg-gray-800 p-4 gap-2 text-white animate-bounceOnce mt-20"}>
+        <div className={"flex flex-col justify-center border-2 rounded-xl font-sans bg-slate-800 p-4 gap-2 text-white animate-bounceOnce mt-20"}>
             <div className={"flex justify-between"}>
                 <div className={"text-amber-400 text-xl "}>{name}</div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
@@ -17,7 +17,7 @@ const TestimonialFormat = ({ name, feedback, profession }: TestimonialData) => {
                     feedback.length > 150 ? feedback.slice(0, 150) + " ..." : feedback
                 }
             </div>
-            <div className={"text-gray-400 text-lg mt-auto"}>{profession}</div>
+            <div className={"text-cyan-400 text-opacity-80 text-lg mt-auto"}>{profession}</div>
         </div>
     );
 };
