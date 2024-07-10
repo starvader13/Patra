@@ -4,12 +4,14 @@ import { Suspense } from 'react';
 import allRoutes from './utils/allRoutes';
 import SuspenseLoading from './components/App/SuspenseLoading';
 import { RecoilRoot } from 'recoil';
+import Navbar from './sections/Navbar/Navbar';
 
 function App(): JSX.Element {
 
-	return <div className='bg-gray-800 text-white'>
+	return <div >
 		<RecoilRoot>
 			<BrowserRouter>
+				<Navbar />
 				<Routes>
 					{
 						allRoutes.map(userRoute => {

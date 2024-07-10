@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        @apply bg-gray-950 text-white m-0 p-0;
+    }
+}
+
+@layer components {
+    .navtext {
+        @apply cursor-pointer p-1 text-lg hover:text-xl hover:text-blue-400 hover:font-bold text-slate-200 font-semibold hover:rotate-12 hover:underline hover:underline-offset-4
+    }
+}

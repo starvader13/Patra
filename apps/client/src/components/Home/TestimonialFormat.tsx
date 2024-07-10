@@ -17,7 +17,7 @@ const TestimonialFormat = ({ name, feedback, profession }: TestimonialData) => {
                     feedback.length > 150 ? feedback.slice(0, 150) + " ..." : feedback
                 }
             </div>
-            <div className={"text-cyan-400 text-opacity-80 text-lg mt-auto"}>{profession}</div>
+            <div className={"text-cyan-400 font-medium text-opacity-80 text-lg mt-auto"}>{profession}</div>
         </div>
     );
 };
