@@ -8,7 +8,7 @@ type Accordion = AccordionData & {
 
 const Accordion = memo(({ index, question, answer, selectedAccordion, handleAccordion}: Accordion): JSX.Element => {
 
-  return <div className={"flex flex-row justify-between items-center w-[95%] lg:w-[80%] border-2 border-gray-700 rounded-lg font-mono m-4 px-4 py-2 gap-48 bg-gray-800 shadow-lg shadow-sky-300 hover:shadow-white"}>
+  return <div className={`flex flex-row justify-between items-center w-[95%] lg:w-[80%] border-2 border-gray-700 rounded-lg font-mono m-4 px-4 py-2 gap-48 bg-gray-800 ${selectedAccordion === index ? `shadow-lg` : `shadow-md`} shadow-indigo-400 hover:shadow-white`}>
     <div className={"flex flex-col text-lg md:text-2xl justify-start gap-4 transition-all duration-300 ease-in-out"}>
       <div className={"text-white font-medium tracking-tighter italic"}>
         {question}
