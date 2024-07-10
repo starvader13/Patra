@@ -1,7 +1,15 @@
 import { useNavigate } from "react-router-dom"
+import { useRecoilValue } from "recoil";
+import signedSelector from "../../store/signedSelector";
 
 const Navbar = () => {
 	const navigate = useNavigate();
+	const signed = useRecoilValue(signedSelector);
+
+	const logout = ()=>{
+		window.localStorage.removeItem("authorization");
+		navigate("/");
+	}
 
 	return (
 		<div className="w-full">
@@ -16,9 +24,14 @@ const Navbar = () => {
 				</div>
 
 				<div className="flex flex-row justify-end items-center gap-8">
-					<div className="navtext" onClick={()=>navigate("/signup")}>SignUp</div>
-					<div className="navtext" onClick={()=>navigate("/login")}>SignIn</div>
-					{/* <div className="navlink">Logout</div> */}
+					{
+						signed ? <>
+							<div className="navtext" onClick={logout}>Logout</div>
+						</> : <>
+							<div className="navtext" onClick={()=>navigate("/signup")}>SignUp</div>
+							<div className="navtext" onClick={()=>navigate("/login")}>SignIn</div>
+						</>
+					}
 				</div>
 			</div>
 			<div className="h-0.5 bg-slate-400 mx-6 rounded-xl shadow-xl shadow-cyan-400"></div>
