@@ -5,6 +5,7 @@ import allRoutes from './utils/allRoutes';
 import SuspenseLoading from './components/App/SuspenseLoading';
 import { RecoilRoot } from 'recoil';
 import Navbar from './sections/Navbar/Navbar';
+import Footer from './sections/Footer/Footer';
 
 function App(): JSX.Element {
 
@@ -20,6 +21,7 @@ function App(): JSX.Element {
 					}
 					<Route path="*" element={<Suspense fallback={<SuspenseLoading />}> <div>False Route</div> </Suspense>}/>
 				</Routes>
+				<Footer />
 			</BrowserRouter>
 		</RecoilRoot>
 	</div>
