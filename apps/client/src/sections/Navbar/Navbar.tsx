@@ -9,6 +9,7 @@ const Navbar = () => {
 	const logout = ()=>{
 		window.localStorage.removeItem("authorization");
 		navigate("/");
+		window.location.reload();
 	}
 
 	return (

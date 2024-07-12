@@ -17,4 +17,7 @@
         @apply cursor-pointer hover:animate-pulse hover:underline hover:underline-offset-2 flex gap-1 items-center
     }
 
+    .table-header-row{
+        @apply font-bold text-3xl font-lato border-2 border-spacing-4 p-1 text-purple-500 text-opacity-80 shadow-md shadow-purple-400 hover:shadow-white
+    }
 }

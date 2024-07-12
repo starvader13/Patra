@@ -1,4 +1,4 @@
-import { Home, Create, Cards, Login, Signup } from "../pages"
+import { Home, Create, Card, Login, Signup } from "../pages"
 
 type AllRoutes = {
     path: string,
@@ -14,7 +14,7 @@ const allRoutes: AllRoutes= [
         element: Create
     },{
         path: "cards",
-        element: Cards
+        element: Card
     },{
         path: "login",
         element: Login
