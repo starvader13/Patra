@@ -9,6 +9,7 @@ const handleSignupAndLogin = async (data: SignFormInput, integrateFunction: (dat
         localStorage.setItem("authorization", response.token);
         setTimeout(()=>{
             navigate("/");
+            window.location.reload();
             setFlashMessage("");
         }, 1000);
     }

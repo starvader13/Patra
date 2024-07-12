@@ -17,7 +17,7 @@ router.use(debounce);
 
 router.param('cardId', doesCardExist);
 
-router.get("/:cardId", async (req: Request, res: Response) => {
+router.get("/cards/:cardId", async (req: Request, res: Response) => {
     const id: number = parseInt(req.params.cardId);
   
     const response: CardWithEveryDetail = await prisma.card.findUnique({
