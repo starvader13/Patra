@@ -4,6 +4,7 @@ import TestimonialData from "./TestimonialData";
 import CreateCard from "./CreateCard";
 import Cards from "./Cards";
 import integrateCreateCardResult from "./integrateCreateResult";
+import CardId from "./CardId";
 
 export type {
     SignFormInput,
@@ -11,5 +12,6 @@ export type {
     TestimonialData,
     CreateCard,
     Cards,
-    integrateCreateCardResult
+    integrateCreateCardResult,
+    CardId
 }
