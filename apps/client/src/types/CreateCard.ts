@@ -7,7 +7,7 @@ type CreateCard = {
     linkedin: string;
     twitter: string;
     customUrl: string;
-    profilePicture?: []
+    profilePicture?: [];
 }
 
 export default CreateCard;

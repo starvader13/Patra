@@ -3,22 +3,30 @@ import { CreateCardInputField, CreateCardProfilePicture, CreateCardTextArea } fr
 import { CreateCard } from "../../types";
 import { UseFormRegister, FieldErrors, UseFormHandleSubmit } from "react-hook-form";
 import { SignButton } from "../../components/Sign";
+import { handleCreateCard, integrateCreateCard } from "../../utils";
+import { useNavigate } from "react-router-dom";
+import flashMessageAtom from "../../store/flashMessageAtom";
+import { useRecoilState } from "recoil";
+import FlashMessage from "../../components/FlashMessage";
 
 interface CreateFormProps {
     register: UseFormRegister<CreateCard>;
     setUrl: React.Dispatch<React.SetStateAction<string>>;
     handleSubmit: UseFormHandleSubmit<CreateCard>;
     errors: FieldErrors<CreateCard>;
+    url: string;
 }
 
-const CreateForm = ({ register, setUrl, handleSubmit, errors }: CreateFormProps) => {
+const CreateForm = ({ register, setUrl, handleSubmit, errors, url }: CreateFormProps) => {
 
-    const create = (data: CreateCard) => {
-        console.log(data);
-    }
+    const navigate = useNavigate();
+    const [flashMessage, setFlashMessage] = useRecoilState(flashMessageAtom);
 
     return (
-        <form onSubmit={handleSubmit(create)} className="w-full flex flex-col justify-center items-center">
+        <form onSubmit={handleSubmit((data: CreateCard)=> handleCreateCard(data, url, integrateCreateCard, setFlashMessage, navigate))} className="w-full flex flex-col justify-center items-center">
+            {
+                flashMessage? <FlashMessage message={flashMessage} /> : <div className="mb-3"></div>
+            }
             <div className="text-6xl font-lato font-bold py-4 pb-8 hover:animate-bounce">Build Your Own E-Card</div>
             <CreateCardInputField<CreateCard> type="text" placeholder="Ashutosh Gupta" header="Name" register={register} registerData="name" errors={errors.name?.message} />
             <CreateCardTextArea<CreateCard> rows={3} placeholder="Software Engineer who loves to develop software" header="Description" register={register} registerData="description" errors={errors.description?.message} />
