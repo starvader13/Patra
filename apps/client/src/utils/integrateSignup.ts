@@ -18,7 +18,7 @@ const integrateSignup = async (data: SignFormInput) => {
     }
 
     try{
-        const response = await axios.post("http://localhost:7000/api/v1/user/signup", {
+        const response = await axios.post("https://patra-qic8.onrender.com/api/v1/user/signup", {
             username: data.username,
             email: data.email,
             password: data.password 

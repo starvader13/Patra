@@ -32,7 +32,7 @@ const integrateCreateCard = async (data: CreateCard) => {
     data.imageUrl = response;
     
     try{
-        const response = await axios.post("http://localhost:7000/api/v1/card/upload",{
+        const response = await axios.post("https://patra-qic8.onrender.com/api/v1/card/upload",{
             imageUrl: data.imageUrl
         },{
             headers: {
@@ -49,7 +49,7 @@ const integrateCreateCard = async (data: CreateCard) => {
     }
     
     try{
-        const response = await axios.post("http://localhost:7000/api/v1/card/create-card", {
+        const response = await axios.post("https://patra-qic8.onrender.com/api/v1/card/create-card", {
             name: data.name,
             description: data.description,
             age: Number(data.age),

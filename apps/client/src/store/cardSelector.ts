@@ -5,7 +5,7 @@ const cardSelector = selector({
     key: "cardSelector",
     get: async () => {
         try{
-            const response = await axios.get("http://localhost:7000/api/v1/card/cards", {
+            const response = await axios.get("https://patra-qic8.onrender.com/api/v1/card/cards", {
                 headers: {
                     authorization: window.localStorage.getItem("authorization")
                 }

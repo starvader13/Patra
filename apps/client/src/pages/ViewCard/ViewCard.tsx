@@ -32,7 +32,7 @@ const ViewCard = () => {
 	});
 	
 	useEffect(()=>{
-		axios.get(`http://localhost:7000/api/v1/card/cards/${id}`).then((response)=>{
+		axios.get(`https://patra-qic8.onrender.com/api/v1/card/cards/${id}`).then((response)=>{
 			setFormData(response.data.card);
 		}).catch(()=>{
 			return null;
