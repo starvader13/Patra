@@ -23,24 +23,30 @@ const ViewCard = () => {
 		name: "",
 		description: "",
 		age: 0,
-		email: "",
+		mailTo: "",
 		hobbies: "",
 		linkedin: "",
 		twitter: "",
 		customURL: "",
 		imageUrl: ""
 	});
+
+	const handleCardIdSearch = async (id: string)=>{
+
+		try{
+			const response = await axios.get(`https://patra-qic8.onrender.com/api/v1/card/cards/${id}`)
+			setFormData(response.data.card);
+		}catch(err: any){
+			return null;
+		}
+		
+		setIsLoading(false);
+	}
 	
 	useEffect(()=>{
-		axios.get(`https://patra-qic8.onrender.com/api/v1/card/cards/${id}`).then((response)=>{
-			setFormData(response.data.card);
-		}).catch(()=>{
-			return null;
-		});
 
-		setIsLoading(false);
-
-
+		handleCardIdSearch(id);
+		
 		return ()=>{
 			setFormData({
 				id: "",
@@ -49,7 +55,7 @@ const ViewCard = () => {
 				name: "",
 				description: "",
 				age: 0,
-				email: "",
+				mailTo: "",
 				hobbies: "",
 				linkedin: "",
 				twitter: "",
@@ -57,7 +63,7 @@ const ViewCard = () => {
 				imageUrl: ""
 			});
 		}
-	}, [])	  
+	}, [id])	  
 
 	if(isLoading){
 		return <SuspenseLoading />
@@ -65,8 +71,8 @@ const ViewCard = () => {
 
 	return <div>
 		{
-			formData.name ? <div className="border-none shadow-xl shadow-indigo-300 rounded-xl mx-10 mb-8 flex justify-center items-center">
-				<ColoredTemplateCard name={formData.name} description={formData.description} age={formData.age} email={formData.email} hobbies={formData.hobbies} linkedin={formData.linkedin} twitter={formData.twitter} customUrl={formData.customURL} url={formData.imageUrl}/>
+			formData.name !== "" ? <div className="border-none shadow-xl shadow-indigo-300 rounded-xl mx-10 mb-8 flex justify-center items-center">
+				<ColoredTemplateCard name={formData.name} description={formData.description} age={formData.age} email={formData.mailTo} hobbies={formData.hobbies} linkedin={formData.linkedin} twitter={formData.twitter} customUrl={formData.customURL} url={formData.imageUrl}/>
 			</div> : <div className="text-7xl h-screen flex justify-center items-center">
 				No Card Exist With This Unique ID.
 			</div>
