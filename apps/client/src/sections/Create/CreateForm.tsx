@@ -14,16 +14,15 @@ interface CreateFormProps {
     setUrl: React.Dispatch<React.SetStateAction<string>>;
     handleSubmit: UseFormHandleSubmit<CreateCard>;
     errors: FieldErrors<CreateCard>;
-    url: string;
 }
 
-const CreateForm = ({ register, setUrl, handleSubmit, errors, url }: CreateFormProps) => {
+const CreateForm = ({ register, setUrl, handleSubmit, errors }: CreateFormProps) => {
 
     const navigate = useNavigate();
     const [flashMessage, setFlashMessage] = useRecoilState(flashMessageAtom);
 
     return (
-        <form onSubmit={handleSubmit((data: CreateCard)=> handleCreateCard(data, url, integrateCreateCard, setFlashMessage, navigate))} className="w-full flex flex-col justify-center items-center">
+        <form onSubmit={handleSubmit((data: CreateCard)=> handleCreateCard(data, integrateCreateCard, setFlashMessage, navigate))} className="w-full flex flex-col justify-center items-center">
             {
                 flashMessage? <FlashMessage message={flashMessage} /> : <div className="mb-3"></div>
             }
