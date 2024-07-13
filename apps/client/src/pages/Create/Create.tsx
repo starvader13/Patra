@@ -25,7 +25,7 @@ const Create = (): JSX.Element => {
 
     return (
         <div className="grid grid-cols-2 mx-8 my-2">
-            <CreateForm register={register} handleSubmit={handleSubmit} setUrl={setUrl} errors={errors} />
+            <CreateForm register={register} handleSubmit={handleSubmit} setUrl={setUrl} errors={errors}/>
 			<ColoredTemplate name={formData.name} description={formData.description} age={formData.age} email={formData.email} hobbies={formData.hobbies} linkedin={formData.linkedin} twitter={formData.twitter} customUrl={formData.customUrl} url={url}/>
         </div>
     );

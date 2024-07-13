@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import authorization from "../middlewares/authorization";
 import { RequestWithUser } from "../types/request";
-import { createCardParameterValidation, createCardInputValidation, doesCardLimitExceed } from "../middlewares/create-card/index";
+import { createCardParameterValidation, createCardInputValidation, doesCardLimitExceed, uploadToCloudinary } from "../middlewares/create-card/index";
 import { PrismaClient } from "@prisma/client";
 import { Card, CardWithEveryDetail, StatusCodes } from "../config";
 import { deleteCardParameterValidation } from "../middlewares/delete-card";
@@ -63,6 +63,13 @@ router.post("/create-card", createCardParameterValidation, createCardInputValida
         message: "Card created successfully"
     });
 });
+
+router.post("/upload", uploadToCloudinary, (req, res)=>{
+    return res.status(StatusCodes.CREATED).json({
+        message: "Card Uploaded Successfully",
+        url: req.body.imageUrl
+    })
+})
 
 router.use(findUserId);
 
