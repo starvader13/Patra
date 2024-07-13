@@ -9,6 +9,8 @@ const CardIdSearch = () => {
 			cardId: ""
 		}
 	});
+
+	
 	
 	return <div className="w-full flex flex-col justify-center items-center my-14">
 		<div className="text-7xl font-lato font-semibold text-zinc-200 hover:animate-bounce">
