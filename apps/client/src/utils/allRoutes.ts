@@ -1,4 +1,4 @@
-import { Home, Create, Card, Login, Signup } from "../pages"
+import { Home, Create, Card, Login, Signup, ViewCard } from "../pages"
 
 type AllRoutes = {
     path: string,
@@ -21,6 +21,9 @@ const allRoutes: AllRoutes= [
     }, {
         path: "signup",
         element: Signup
+    }, {
+        path: "view-card",
+        element: ViewCard
     }
 ]
 

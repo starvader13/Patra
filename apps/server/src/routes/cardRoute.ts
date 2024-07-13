@@ -12,9 +12,7 @@ import debounce from "../middlewares/debounce";
 const router = Router();
 const prisma = new PrismaClient();
 
-router.use(authorization);
 router.use(debounce);
-
 router.param('cardId', doesCardExist);
 
 router.get("/cards/:cardId", async (req: Request, res: Response) => {
@@ -25,17 +23,19 @@ router.get("/cards/:cardId", async (req: Request, res: Response) => {
             id: id
         }
     });
-
+    
     if(!response){
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             message: "Internal Server Error"
         });
     }
-
+    
     return res.status(StatusCodes.OK).json({
         card: response
     });
 });
+
+router.use(authorization);
 
 router.post("/create-card", createCardParameterValidation, createCardInputValidation, doesCardLimitExceed, async (req: Request, res: Response)=>{
     const body: Card = req.body;
