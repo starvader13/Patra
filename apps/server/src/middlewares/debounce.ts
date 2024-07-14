@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "../config";
 
 let userId: Record<string, number> = {};
-const debounceTime = 3000;
+const debounceTime = 1000;
 
 const debounce = (req: Request, res: Response, next: NextFunction) => {
     const ipAddress:string = req.ip?.toString() || "";
