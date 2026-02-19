@@ -39,4 +39,5 @@ model Card {
   updatedAt DateTime @updatedAt
   author User @relation(fields: [authorId], references: [id])
   authorId Int
+  test Int
 }
