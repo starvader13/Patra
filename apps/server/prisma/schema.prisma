@@ -19,6 +19,7 @@ model User {
   email String @unique
   password String
   isAdmin Boolean @default(false)
+  botEnabled Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   cards Card[]
@@ -35,8 +36,18 @@ model Card {
   twitter String?
   customURL String?
   hobbies String?
+  status String @default("draft")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   author User @relation(fields: [authorId], references: [id])
   authorId Int
+}
+
+model BotLog {
+  id Int @id @default(autoincrement())
+  action String
+  payload String?
+  status String @default("pending")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
